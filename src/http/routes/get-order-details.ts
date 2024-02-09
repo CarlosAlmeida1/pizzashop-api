@@ -1,17 +1,17 @@
-import Elysia, { t } from 'elysia'
-import { authentication } from '../authentication'
-import { db } from '@/db/connection'
-import { UnauthorizedError } from './errors/unauthorized-error'
-import { NotAManagerError } from './errors/not-a-manager-error'
+import Elysia, { t } from "elysia";
+import { authentication } from "../authentication";
+import { db } from "@/db/connection";
+import { UnauthorizedError } from "./errors/unauthorized-error";
+import { NotAManagerError } from "./errors/not-a-manager-error";
 
 export const getOrderDetails = new Elysia().use(authentication).get(
-  '/orders/:id',
+  "/orders/:id",
   async ({ getCurrentUser, params }) => {
-    const { id: orderId } = params
-    const { restaurantId } = await getCurrentUser()
+    const { id: orderId } = params;
+    const { restaurantId } = await getCurrentUser();
 
     if (!restaurantId) {
-      throw new NotAManagerError()
+      throw new NotAManagerError();
     }
 
     const order = await db.query.orders.findFirst({
@@ -48,19 +48,19 @@ export const getOrderDetails = new Elysia().use(authentication).get(
         return and(
           eq(fields.id, orderId),
           eq(fields.restaurantId, restaurantId),
-        )
+        );
       },
-    })
+    });
 
     if (!order) {
-      throw new UnauthorizedError()
+      throw new UnauthorizedError();
     }
 
-    return order
+    return order;
   },
   {
     params: t.Object({
       id: t.String(),
     }),
   },
-)
+);

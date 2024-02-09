@@ -11,18 +11,18 @@ import {
   Section,
   Tailwind,
   Text,
-} from '@react-email/components'
+} from "@react-email/components";
 
 interface AuthenticationMagicLinkTemplateProps {
-  userEmail: string
-  authLink: string
+  userEmail: string;
+  authLink: string;
 }
 
 export function AuthenticationMagicLinkTemplate({
   userEmail,
   authLink,
 }: AuthenticationMagicLinkTemplateProps) {
-  const previewText = `Faça login na Pizza Shop`
+  const previewText = `Faça login na Pizza Shop`;
 
   return (
     <Html>
@@ -38,7 +38,7 @@ export function AuthenticationMagicLinkTemplate({
               Faça login na Pizza Shop
             </Heading>
             <Text className="text-black text-[14px] leading-[24px]">
-              Você solicitou um link para login na Pizza Shop através do email{' '}
+              Você solicitou um link para login na Pizza Shop através do email{" "}
               {userEmail}.
             </Text>
             <Section className="text-center mt-[32px] mb-[32px]">
@@ -50,7 +50,7 @@ export function AuthenticationMagicLinkTemplate({
               </Button>
             </Section>
             <Text className="text-black text-[14px] leading-[24px]">
-              ou copie a URL abaixo e cole em seu browser:{' '}
+              ou copie a URL abaixo e cole em seu browser:{" "}
               <Link href={authLink} className="text-sky-500 no-underline">
                 {authLink}
               </Link>
@@ -64,5 +64,5 @@ export function AuthenticationMagicLinkTemplate({
         </Body>
       </Tailwind>
     </Html>
-  )
+  );
 }

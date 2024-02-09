@@ -1,9 +1,9 @@
 {
-  "extends": [
-    "@rocketseat/eslint-config/node",
-    "plugin:drizzle/all"
-  ],
-  "plugins": [
-    "drizzle"
+  "prettier/prettier": [
+    "error",
+    {
+      "singleQuote": true,
+      "parser": "flow"
+    }
   ]
 }

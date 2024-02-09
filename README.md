@@ -6,7 +6,7 @@ Food delivery app (aka. iFood/Uber Eats) back-end built with TypeScript, Drizzle
 
 ## Running
 
-This project depends on Docker to setup database. With Docker installed, clone the project, install  dependencies, setup Docker containers and run the application.
+This project depends on Docker to setup database. With Docker installed, clone the project, install dependencies, setup Docker containers and run the application.
 
 > You must also run migrations to create database tables and run the seed to populate the database with fake data.
 
