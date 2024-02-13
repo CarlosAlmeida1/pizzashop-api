@@ -1,13 +1,13 @@
-import Elysia from "elysia";
-import { authentication } from "../authentication";
-import { and, count, eq } from "drizzle-orm";
-import { db } from "@/db/connection";
-import { orderItems, orders, products } from "@/db/schema";
+import Elysia from 'elysia'
+import { authentication } from '../authentication'
+import { and, count, eq } from 'drizzle-orm'
+import { db } from '@/db/connection'
+import { orderItems, orders, products } from '@/db/schema'
 
 export const getPopularProducts = new Elysia()
   .use(authentication)
-  .get("/metrics/popular-products", async ({ getManagedRestaurantId }) => {
-    const restaurantId = await getManagedRestaurantId();
+  .get('/metrics/popular-products', async ({ getManagedRestaurantId }) => {
+    const restaurantId = await getManagedRestaurantId()
 
     try {
       const popularProducts = await db
@@ -20,10 +20,10 @@ export const getPopularProducts = new Elysia()
         .leftJoin(products, eq(products.id, orderItems.productId))
         .where(and(eq(orders.restaurantId, restaurantId)))
         .groupBy(products.name)
-        .limit(5);
+        .limit(5)
 
-      return popularProducts;
+      return popularProducts
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
-  });
+  })

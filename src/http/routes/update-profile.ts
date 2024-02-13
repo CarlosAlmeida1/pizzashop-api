@@ -1,14 +1,14 @@
-import Elysia, { t } from "elysia";
-import { authentication } from "../authentication";
-import { db } from "@/db/connection";
-import { restaurants } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import Elysia, { t } from 'elysia'
+import { authentication } from '../authentication'
+import { db } from '@/db/connection'
+import { restaurants } from '@/db/schema'
+import { eq } from 'drizzle-orm'
 
 export const updateProfile = new Elysia().use(authentication).put(
-  "/profile",
+  '/profile',
   async ({ getManagedRestaurantId, set, body }) => {
-    const restaurantId = await getManagedRestaurantId();
-    const { name, description } = body;
+    const restaurantId = await getManagedRestaurantId()
+    const { name, description } = body
 
     await db
       .update(restaurants)
@@ -16,9 +16,9 @@ export const updateProfile = new Elysia().use(authentication).put(
         name,
         description,
       })
-      .where(eq(restaurants.id, restaurantId));
+      .where(eq(restaurants.id, restaurantId))
 
-    set.status = 204;
+    set.status = 204
   },
   {
     body: t.Object({
@@ -26,4 +26,4 @@ export const updateProfile = new Elysia().use(authentication).put(
       description: t.Optional(t.String()),
     }),
   },
-);
+)
